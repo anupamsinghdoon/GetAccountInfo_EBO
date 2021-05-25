@@ -23,7 +23,20 @@ exports.ZipOrSSN_Task = async function (context, event, callback, RB) {
   catch {
     enterdigit = null
   }
-  let squestion = `For your account verification please say or enter your Zip Code or the Last 4 digits of your Social Security number`;
+  let squestion = "";
+  let enterCodeType = "";
+  if (Zipcode.length === 5 && SSNCode.length === 4) {
+    squestion = `For your account verification please say or enter your Zip Code or the Last 4 digits of your Social Security number.`;
+
+  }
+  else if (Zipcode.length === 5) {
+    squestion = `For your account verification please say or enter your Zip Code.`;
+    enterCodeType = "zip";
+  }
+  else if (SSNCode.length === 4) {
+    squestion = `For your account verification please say or enter the Last 4 digits of your Social Security number.`;
+    enterCodeType = "ssn";
+  }
 
   let Collect_Json = {
     "name": "collect_ziporssn",
@@ -53,7 +66,7 @@ exports.ZipOrSSN_Task = async function (context, event, callback, RB) {
     if (enterdigit == SSNCode) {
       Collect = false;
       //Redirect = true;
-      Say = `Thank you for validating your account with social security number.`;
+      Say = `Thank you for verifying your account with social security number.`;
       // if (Memory.namespace != 'EBO')
       //     Redirect = "task://set_MM";
 
@@ -61,7 +74,7 @@ exports.ZipOrSSN_Task = async function (context, event, callback, RB) {
     else if (enterdigit == Zipcode) {
       Collect = false;
       //Redirect = true;
-      Say = `Thank you for validating your account with Zip Code.`;
+      Say = `Thank you for verifying your account with Zip Code.`;
       // if (Memory.namespace != 'EBO')
       //     Redirect = "task://set_MM";
 
@@ -70,7 +83,7 @@ exports.ZipOrSSN_Task = async function (context, event, callback, RB) {
     {
       Collect = false;
       //Redirect = true;
-      Say = `Thank you for validating your account with Zip Code.`;
+      Say = `Thank you for verifying your account with Zip Code.`;
       // if (Memory.namespace != 'EBO')
       //     Redirect = "task://set_MM";
     }
@@ -89,10 +102,21 @@ exports.ZipOrSSN_Task = async function (context, event, callback, RB) {
       else
         Remember.ZipSSNFailed_Counter = parseInt(Memory.ZipSSNFailed_Counter) + 1;
 
-      if (enterdigit.length >= 5)
+      if (enterCodeType === "zip" && enterdigit.length != 5) {
         Say = `The  Zip Code, <say-as interpret-as='digits'>${enterdigit}</say-as> you entered is not correct.`;
-      else
-        Say = `The  Last 4 digits of your social security number, <say-as interpret-as='digits'>${enterdigit}</say-as> you entered is not correct.`;
+      }
+      else if (enterCodeType === "ssn" && enterdigit.length != 4) {
+        Say = `The  Zip Code, <say-as interpret-as='digits'>${enterdigit}</say-as> you entered is not correct.`;
+      }
+      else {
+        if (enterdigit.length >= 5)
+          Say = `The  Zip Code, <say-as interpret-as='digits'>${enterdigit}</say-as> you entered is not correct.`;
+        else
+          Say = `The  Last 4 digits of your social security number, <say-as interpret-as='digits'>${enterdigit}</say-as> you entered is not correct.`;
+
+
+      }
+
 
       Remember.question = "ZipOrSSN_Task";
       Collect = Collect_Json;

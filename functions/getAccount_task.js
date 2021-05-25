@@ -1,7 +1,7 @@
 const axios = require('axios');
 // This is your new function. To start, set the name and path on the left.
 const API_ENDPOINT = 'https://pecodeviis:Test123!@pecodev.convergentusa.com/Convergent_Main_IVR_SIF/Home';
-
+console.log("getAccount_task");
 exports.getAccount_task = async function (context, event, callback, RB) {
   let Say;
   let Prompt;
@@ -205,6 +205,7 @@ exports.getAccount_task = async function (context, event, callback, RB) {
 
       if (userData.accountStatus) {
         if (userData.RouteBalance == "0.00" || userData.RouteBalance == "0") {
+          Say = `We need to transfer you to an agent for account number, <say-as interpret-as='digits'>${AccountNo}</say-as>.`;
           console.log("Zero Balance:");
           Redirect = "task://agent_transfer";
         }
@@ -212,15 +213,23 @@ exports.getAccount_task = async function (context, event, callback, RB) {
           console.log("accountStatus true:");
           Redirect = "task://check_name_task";
         }
+        if(!(userData.userZip.length===5 || userData.userSsnLastFour.length===4))
+        {
+          Say = `We need to transfer you to an agent for account number, <say-as interpret-as='digits'>${AccountNo}</say-as>.`;
+          console.log("Not Valid Zip and SSN");
+          Redirect = "task://agent_transfer";
+        }//
       }
       else // if account not active
       {
         console.log("accountStatus false:");
         Collect = false;
         Redirect = true;
-        Say = `We need to transfer you to an agent for account number, <say-as interpret-as='digits'>${AccountNo}</say-as> is not active.`;
+        Say = `We need to transfer you to an agent for account number, <say-as interpret-as='digits'>${AccountNo}</say-as>.`;
         Redirect = "task://agent_transfer";
       }
+
+      
     }
     else // if api not holding success result
     {
