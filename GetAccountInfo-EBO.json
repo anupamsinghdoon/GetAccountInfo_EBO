@@ -48,7 +48,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     },
                     { "listen" : true }
                 ]
@@ -61,7 +61,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     },
                     { "listen" : true }
                 ]
@@ -98,7 +98,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     }
                 ]
             },
@@ -168,7 +168,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     },
                     { "listen" : true }
                 ]
@@ -181,7 +181,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     },
                     { "listen" : true }
                 ]
@@ -272,7 +272,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     },
                     { "listen" : true }
                 ]
@@ -285,7 +285,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     }
                 ]
             },
@@ -399,7 +399,7 @@
             "actions" : {
                 "actions" : [
                     {
-                        "redirect" : "https://getaccountinfo-ebo-9536-dev.twil.io/index"
+                        "redirect" : "https://getaccountinfo-ebo-4566-dev.twil.io/index"
                     }
                 ]
             },
