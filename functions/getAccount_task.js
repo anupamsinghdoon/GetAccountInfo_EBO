@@ -16,7 +16,7 @@ exports.getAccount_task = async function (context, event, callback, RB) {
   API_ENDPOINT = context.API_URL;
   const Memory = JSON.parse(event.Memory);
   Remember.userData = "";
-
+  Remember.Agent = false;
   Remember.FullName = "";
   Remember.ZipCd = "";
   Remember.SSNLastFour = "";
@@ -43,7 +43,8 @@ exports.getAccount_task = async function (context, event, callback, RB) {
   Remember.Status = "";
   Remember.PayArrangeFlag = "";
   Remember.SIFAmount = "";
-
+  Remember.FirstName = "";
+  Remember.LastName = "";
   //Remember.clientData = Memory.clientData;
   Remember.CurrentTask = "getAccount_task";
 
@@ -168,7 +169,9 @@ exports.getAccount_task = async function (context, event, callback, RB) {
         STATE: userRespData.State,
         Status: userRespData.Status,
         PayArrangeFlag: userRespData.PayArrangeFlag,
-        SIFAmount: userRespData.SIFAmount
+        SIFAmount: userRespData.SIFAmount,
+        FirstName : userRespData.FirstName,
+        LastName : userRespData.LastName
       };
       // filling the  getaccountinfo response in remember 
       console.log("userData:" + JSON.stringify(userData));
@@ -199,6 +202,8 @@ exports.getAccount_task = async function (context, event, callback, RB) {
       Remember.Status = userRespData.Status;
       Remember.PayArrangeFlag = userRespData.PayArrangeFlag;
       Remember.SIFAmount = userRespData.SIFAmount
+      Remember.FirstName = userRespData.FirstName;
+      Remember.LastName = userRespData.LastName;
 
       Say = false;
       Listen = false;
