@@ -1,0 +1,413 @@
+{
+    "friendlyName" : "GetAccountInfo-EBO",
+    "logQueries" : true,
+    "uniqueName" : "GetAccountInfo-EBO",
+    "defaults" : {
+        "defaults" : {
+            "assistant_initiation" : "task://greeting",
+            "fallback" : "task://fallback",
+            "collect" : {
+                "validate_on_failure" : "task://fallback"
+            }
+        }
+    },
+    "styleSheet" : {
+        "style_sheet" : {
+            "collect" : {
+                "validate" : {
+                    "on_failure" : {
+                        "repeat_question" : false,
+                        "messages" : [
+                            { "say" : { "speech" : "" } },
+                            {
+                                "say" : {
+                                    "speech" : "I still didn't catch that. Please repeat."
+                                }
+                            },
+                            {
+                                "say" : {
+                                    "speech" : "Let's try one last time. Say it again please."
+                                }
+                            }
+                        ]
+                    },
+                    "on_success" : { "say" : { "speech" : "" } },
+                    "max_attempts" : 1
+                }
+            },
+            "voice" : {
+                "say_voice" : "Polly.Joanna-Neural"
+            },
+            "name" : ""
+        }
+    },
+    "fieldTypes" : [],
+    "tasks" : [
+        {
+            "uniqueName" : "fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "greeting",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "dummy",
+            "actions" : {
+                "actions" : [
+                    { "say" : { "speech" : " " } },
+                    { "remember" : {} },
+                    {
+                        "redirect" : "task://agent_transfer"
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "dummy"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "agent_transfer",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "Agent",
+                    "fieldType" : "Twilio.ALPHANUMERIC"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "i want agent transfer"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "talk to agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "discuss with agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{Agent}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Operator"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I'd like to talk to an agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "transfer me to an agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I want to to talk to an agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I want to talk to an operator"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Please connect me to an agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "operator"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "getAccount",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "ZipOrSSN_Taks",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "zip_ssn",
+                    "fieldType" : "Twilio.NUMBER_SEQUENCE"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "ssn is {zip_ssn} "
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "zip is {zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "my zip is {zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "my ssn is {zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{zip_ssn} is my zip"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{zip_ssn} is my ssn"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{zip_ssn} thank you"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "thank you {zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "okay my ssn is {zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{zip_ssn} its my ssn"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{zip_ssn} its my zip"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "zipcode {zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "my zip code is {zip_ssn}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "zip code is {zip_ssn}"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "set_MM",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "This communication is from a debt collector, this is an attempt to collect a debt and any information obtained will be used for that purpose"
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "check_name_task",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "yes_no",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    }
+                ]
+            },
+            "fields" : [
+                {
+                    "uniqueName" : "yes_no",
+                    "fieldType" : "Twilio.YES_NO"
+                }
+            ],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} it's correct"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} right"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} it's right"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} its not my name"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} not"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that is my name"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that is my name"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} not correct"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that't not it"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that's incorrect"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no}  that is not my name"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} please"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Please {yes_no}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no}  thank you"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "thank you {yes_no}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that's right"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's right {yes_no}"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that's wrong"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} it is correct"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that's it"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that't not it"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no} that's not my name."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "{yes_no}  that is my name"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "check_name_Yes_No",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://getaccountinfo-ebo-3024-dev.twil.io/index"
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        }
+    ],
+    "modelBuild" : {
+        "uniqueName" : "Built on 05-20-2021 11:16:22"
+    }
+}

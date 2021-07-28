@@ -25,11 +25,11 @@ exports.ZipOrSSN_Task = async function (context, event, callback, RB) {
   }
   let squestion = "";
   let enterCodeType = "";
-  if (Zipcode.length === 5 && SSNCode.length === 4) {
+  if (Zipcode.length >= 5 && SSNCode.length === 4) {
     squestion = `For your account verification please say or enter your Zip Code or the Last 4 digits of your Social Security number.`;
 
   }
-  else if (Zipcode.length === 5) {
+  else if (Zipcode.length >= 5) {
     squestion = `For your account verification please say or enter your Zip Code.`;
     enterCodeType = "zip";
   }
